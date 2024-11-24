@@ -1,15 +1,32 @@
+using Microsoft.EntityFrameworkCore;
+
+using LetMeCookAPI.Data;
+using LetMeCookAPI.Services;
+using LetMeCookAPI.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// DbContext
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseMySql(
+        builder.Configuration.GetConnectionString("DefaultConnection"),
+        new MySqlServerVersion(new Version(8, 0, 33))
+    ));
 
+// Repositorios y Servicios
+builder.Services.AddScoped<RecipeRepository>();
+builder.Services.AddScoped<RecipesService>();
+builder.Services.AddScoped<UserRepository>();
+builder.Services.AddScoped<UsersService>();
+
+// Controladores
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Middleware
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -17,9 +34,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
-
 app.MapControllers();
 
 app.Run();
