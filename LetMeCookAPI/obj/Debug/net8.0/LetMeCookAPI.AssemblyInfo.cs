@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LetMeCookAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b51b154877d239b3ba8a5659ae4fd0c68628f4fb")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3aa2e86364458271ee41c36be52e03f35e63f7be")]
 [assembly: System.Reflection.AssemblyProductAttribute("LetMeCookAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LetMeCookAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
