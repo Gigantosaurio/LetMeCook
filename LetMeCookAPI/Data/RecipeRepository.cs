@@ -25,33 +25,33 @@ public class RecipeRepository : IRecipeRepository
 
     public Recipe Get(int id)
     {
-        throw new NotImplementedException();
+        return _context.Recipes.FirstOrDefault(r => r.Id == id);
     }
 
     public int Delete(Recipe recipe)
     {
-        throw new NotImplementedException();
+        _context.Recipes.Remove(recipe);
+        _context.SaveChanges();
+        return recipe.Id;
     }
 
-    public int Update(Recipe recipe)
+    public Recipe Update(Recipe recipe)  
     {
-        throw new NotImplementedException();
+        _context.Recipes.Update(recipe);
+        _context.SaveChanges();
+        return recipe;
     }
 
     public IEnumerable<Recipe> GetAll()
     {
-        throw new NotImplementedException();
+        return _context.Recipes.ToList();
     }
 
     public IEnumerable<Recipe> GetAllByUser(int userId)
     {
-        throw new NotImplementedException();
+        return _context.Recipes.Where(r => r.UserId == userId).ToList();
     }
 
-    public IEnumerable<Recipe> seachByFilters(string title, string description)
-    {
-        throw new NotImplementedException();
-    }
     public IQueryable<Recipe> GetAllQueryable()
     {
         return _context.Recipes.AsQueryable();

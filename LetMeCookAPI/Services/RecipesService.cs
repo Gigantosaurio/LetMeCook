@@ -10,6 +10,10 @@ public class RecipesService
     {
         _repository = repository;
     }
+    public IEnumerable<Recipe> GetAll()
+    {
+        return _repository.GetAll();
+    }
     public IEnumerable<Recipe> GetPublicRecipes()
     {
         return _repository.GetAllPublic();
@@ -17,6 +21,26 @@ public class RecipesService
     public Recipe CreateRecipe(Recipe recipe)
     {
         return _repository.Add(recipe);
+    }
+
+    public Recipe GetRecipeById(int id)
+    {
+        return _repository.Get(id);
+    }
+
+    public int DeleteRecipe(int id)
+    {
+        return _repository.Delete(_repository.Get(id));
+    }
+
+    public Recipe UpdateRecipe(Recipe recipe)
+    {
+        return _repository.Update(recipe);
+    }
+
+    public IEnumerable<Recipe> GetRecipesByUser(int userId)
+    {
+        return _repository.GetAllByUser(userId);
     }
 
     public async Task<IEnumerable<Recipe>> SearchRecipes(RecipeSearchFilter filter)
@@ -31,7 +55,7 @@ public class RecipesService
                 (filter.SearchInIngredients && recipe.Ingredients.Contains(filter.Keyword)) ||
                 (filter.SearchInSteps && recipe.Steps.Contains(filter.Keyword)));
         }
-
+        
         return await query.ToListAsync();
     }
 }

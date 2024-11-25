@@ -9,8 +9,7 @@ public interface IRecipeRepository
     Recipe Add(Recipe recipe);
     
     int Delete(Recipe recipe);
-    int Update(Recipe recipe);
+    Recipe Update(Recipe recipe);
 
-    //Obtener por filtros
-    IEnumerable<Recipe> seachByFilters(string title, string description);
+    IQueryable<Recipe> GetAllQueryable();
 }
